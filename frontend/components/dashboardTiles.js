@@ -3,24 +3,29 @@ import DashboardTile from './dashboardTile';
 
 var DashboardTiles = React.createClass({
 
-    renderTitle: function() {
+    renderTitle: function(title) {
         return (
             <div className="dashboard-tiles-title">
-                {this.props.title}
+                {title}
             </div>
         );
     },
 
     renderItems: function() {
-        return (
-            <div className="dashboard-tiles-items clearfix">
-                {this.renderDashboardTiles()}
-            </div>
-        );
+        return _.map(this.props.items, (item) => {
+            return (
+                <div>
+                    {this.renderTitle(item.displayTitle)}
+                    <div className="dashboard-tiles-items clearfix">
+                        {this.renderDashboardTiles(item._tiles)}
+                    </div>
+                </div>
+            );
+        });
     },
 
-    renderDashboardTiles: function() {
-        return _.map(this.props.tiles, (tile) => {
+    renderDashboardTiles: function(tiles) {
+        return _.map(tiles, (tile) => {
             return (
                 <DashboardTile
                     key={tile._id}
@@ -32,7 +37,7 @@ var DashboardTiles = React.createClass({
 
     render: function() {
         
-        if (this.props.tiles.length === 0) {
+        if (this.props.items.length === 0) {
             return null;
         }
 
