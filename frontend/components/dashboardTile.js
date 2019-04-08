@@ -12,10 +12,24 @@ var DashboardTile = React.createClass({
     },
 
     onTileClicked: function() {
-        if (this.props.tile._shouldOpenNewWindow) {
-            return openNewWindowWithLink(this.props.tile._link);
+        if (this.props.tile._tileUploadType == 'externalLink') {
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._courseExternalLink);
+            } else {
+                return window.location = this.props.tile._courseExternalLink;
+            }
+        } else if (this.props.tile._tileUploadType == 'resource') {
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._tileResourceUpload);
+            } else {
+                return window.location = this.props.tile._tileResourceUpload;
+            }
         } else {
-            return window.location = this.props.tile._link;
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._courseExternalLink);
+            } else {
+                return window.location = this.props.tile._courseExternalLink;
+            }
         }
     },
 
@@ -51,6 +65,7 @@ var DashboardTile = React.createClass({
     },
 
     render: function() {
+        console.log(this.props);
         return (
             <div className="dashboard-tiles-tile clearfix" onClick={this.onTileClicked}>
                 {this.renderGraphic()}

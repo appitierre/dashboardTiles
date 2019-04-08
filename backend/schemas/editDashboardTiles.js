@@ -29,10 +29,32 @@ module.exports = {
             "_poster": {
                 "type": "AssetUpload:Image:Small",
                 "label": "Poster Image"
+            },            
+            "_tileLinkType": {
+                "type": "Select",
+                "label": "Tile Link Type",
+                "options": [{
+                    "value": "course",
+                    "text": "Course Link"
+                }, {
+                    "value": "resource",
+                    "text": "Resource"
+                }, {
+                    "value": "externalLink",
+                    "text": "External Link"
+                }]
             },
-            "_link": {
+            "_tileCourseLink": {
+                "type": "Object",
+                "label": "Course Link",
+            },
+            "_tileResourceUpload": {
+                "type": "AssetUpload:Resource",
+                "label": "Resource Upload"
+            },
+            "_courseExternalLink": {
                 "type": "Text",
-                "label": "Link"
+                "label": "External Link"
             },
             "_shouldOpenNewWindow": {
                 "type": "Boolean",

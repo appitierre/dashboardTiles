@@ -5,7 +5,11 @@ var tiles = mongoose.Schema({
     "displayTitle": String,
     "description": String,
     "_poster": String,
-    "_link": String,
+    "_tileLinkType": String,
+    "_tileCourseLink": Object,
+    "_tileResourceUpload": String,
+    "_courseExternalLink": String,
+    "_courseLink": String,
     "_shouldOpenNewWindow": {type: Boolean, default: true},
     "_isPublished": {type: Boolean, default: false},
     "_createdAt": {type: String, default: Date.now},
@@ -15,7 +19,7 @@ var tiles = mongoose.Schema({
 });
 
 module.exports = {
-    "_type": {type: String, default: 'dashboardTile'},
+    "_type": {type: String, default: 'dashboardTile', enum:["link", "course", "resource"]},
     "displayTitle": {type: String, default: 'Tiles'},
     "_tiles": [tiles]
 }
