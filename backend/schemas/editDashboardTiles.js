@@ -45,8 +45,9 @@ module.exports = {
                 }]
             },
             "_tileCourseLink": {
-                "type": "Object",
+                "type": "CourseSelection",
                 "label": "Course Link",
+                "shouldOnlyAllowOneCourse": true
             },
             "_tileResourceUpload": {
                 "type": "AssetUpload:Resource",
