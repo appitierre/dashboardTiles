@@ -27,7 +27,7 @@ module.exports = {
                 "label": "Description"
             },
             "_poster": {
-                "type": "AssetUpload:Image:Small",
+                "type": "AssetUpload:Image:Large",
                 "label": "Poster Image"
             },            
             "_tileLinkType": {
