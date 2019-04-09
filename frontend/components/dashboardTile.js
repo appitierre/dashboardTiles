@@ -1,5 +1,6 @@
 import React from 'react';
 import openNewWindowWithLink from 'helpers/openNewWindowWithLink';
+import getSlugOrId from 'helpers/getSlugOrId';
 
 var DashboardTile = React.createClass({
 
@@ -12,23 +13,24 @@ var DashboardTile = React.createClass({
     },
 
     onTileClicked: function() {
-        if (this.props.tile._tileUploadType == 'externalLink') {
+        if (this.props.tile._tileLinkType == 'externalLink') {
             if (this.props.tile._shouldOpenNewWindow) {
                 return openNewWindowWithLink(this.props.tile._courseExternalLink);
             } else {
                 return window.location = this.props.tile._courseExternalLink;
             }
-        } else if (this.props.tile._tileUploadType == 'resource') {
+        } else if (this.props.tile._tileLinkType == 'resource') {
             if (this.props.tile._shouldOpenNewWindow) {
                 return openNewWindowWithLink(this.props.tile._tileResourceUpload);
             } else {
                 return window.location = this.props.tile._tileResourceUpload;
             }
         } else {
+            var courseSlugOrId = getSlugOrId(_.find(this.props.courses, {_id: this.props.tile._tileCourseLink}));
             if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._courseExternalLink);
+                return openNewWindowWithLink('/courses/' + courseSlugOrId);
             } else {
-                return window.location = this.props.tile._courseExternalLink;
+                return window.location = '/courses/' + courseSlugOrId;
             }
         }
     },
@@ -65,7 +67,6 @@ var DashboardTile = React.createClass({
     },
 
     render: function() {
-        console.log(this.props);
         return (
             <div className="dashboard-tiles-tile clearfix" onClick={this.onTileClicked}>
                 {this.renderGraphic()}
