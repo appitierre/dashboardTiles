@@ -37,7 +37,11 @@ var DashboardTiles = React.createClass({
         }
 
         return (
-            <div className="dashboard-tiles">
+            <div 
+                className="dashboard-tiles"
+                tabIndex="0"
+                aria-label="Dashboard tiles. Here are tiles with external links, file uploads and shortcuts to courses."
+            >
                 {this.renderTitle()}
                 {this.renderItems()}
             </div>
