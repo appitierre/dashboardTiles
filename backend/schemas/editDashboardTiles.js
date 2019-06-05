@@ -30,7 +30,7 @@ module.exports = {
                 "type": "AssetUpload:Image:Large",
                 "label": "Poster Image"
             },            
-            "_tileLinkType": {
+            "_linkType": {
                 "type": "Select",
                 "label": "Tile Link Type",
                 "options": [{
@@ -44,16 +44,16 @@ module.exports = {
                     "text": "External Link"
                 }]
             },
-            "_tileCourseLink": {
+            "_courseLink": {
                 "type": "CourseSelection",
                 "label": "Course Link",
                 "shouldOnlyAllowOneCourse": true
             },
-            "_tileResourceUpload": {
+            "_resourceUpload": {
                 "type": "AssetUpload:Resource",
                 "label": "Resource Upload"
             },
-            "_courseExternalLink": {
+            "_link": {
                 "type": "Text",
                 "label": "External Link"
             },

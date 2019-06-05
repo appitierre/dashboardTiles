@@ -13,24 +13,30 @@ var DashboardTile = React.createClass({
     },
 
     onTileClicked: function() {
-        if (this.props.tile._tileLinkType == 'externalLink') {
+        if (this.props.tile._linkType == 'externalLink') {
             if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._courseExternalLink);
+                return openNewWindowWithLink(this.props.tile._link);
             } else {
-                return window.location = this.props.tile._courseExternalLink;
+                return window.location = this.props.tile._link;
             }
-        } else if (this.props.tile._tileLinkType == 'resource') {
+        } else if (this.props.tile._linkType == 'resource') {
             if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._tileResourceUpload);
+                return openNewWindowWithLink(this.props.tile._resourceUpload);
             } else {
-                return window.location = this.props.tile._tileResourceUpload;
+                return window.location = this.props.tile._resourceUpload;
             }
-        } else {
-            var courseSlugOrId = getSlugOrId(_.find(this.props.courses, {_id: this.props.tile._tileCourseLink}));
+        } else if (this.props.tile._linkType == 'course') {
+            var courseSlugOrId = getSlugOrId(_.find(this.props.courses, {_id: this.props.tile._courseLink}));
             if (this.props.tile._shouldOpenNewWindow) {
                 return openNewWindowWithLink('/courses/' + courseSlugOrId);
             } else {
                 return window.location = '/courses/' + courseSlugOrId;
+            }
+        } else {
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._link);
+            } else {
+                return window.location = this.props.tile._link;
             }
         }
     },
