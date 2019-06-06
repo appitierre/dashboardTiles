@@ -26,7 +26,7 @@ var DashboardTile = React.createClass({
                 return window.location = this.props.tile._resourceUpload;
             }
         } else if (this.props.tile._linkType == 'course') {
-            var courseSlugOrId = getSlugOrId(_.find(this.props.courses, {_id: this.props.tile._courseLink}));
+            var courseSlugOrId = getSlugOrId(this.props.tile._courseLink);
             if (this.props.tile._shouldOpenNewWindow) {
                 return openNewWindowWithLink('/courses/' + courseSlugOrId);
             } else {

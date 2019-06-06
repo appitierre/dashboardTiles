@@ -9,7 +9,6 @@ var tiles = mongoose.Schema({
     "_courseLink": {type: mongoose.Schema.Types.ObjectId, ref:'Course'},
     "_resourceUpload": String,
     "_link": String,
-    "_courseLink": String,
     "_shouldOpenNewWindow": {type: Boolean, default: true},
     "_isPublished": {type: Boolean, default: false},
     "_createdAt": {type: String, default: Date.now},

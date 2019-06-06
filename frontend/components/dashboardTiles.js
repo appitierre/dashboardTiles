@@ -25,7 +25,6 @@ var DashboardTiles = React.createClass({
                 <DashboardTile
                     key={tile._id}
                     tile={tile}
-                    courses={this.props.courses}
                 />
             );
         });

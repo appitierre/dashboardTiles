@@ -2,6 +2,7 @@ var Bloom = require(global.app + '/bloom');
 var async = require('async');
 var DashboardTile = require('./models/dashboardTile');
 var EditDashboardTilesSchema = require('./schemas/editDashboardTiles');
+var Promise  = require('bluebird');
 /*var CourseBooking = require('./models/courseBooking');
 var User = require(global.app + '/models/user');
 var AddCourseBookingSchema = require('./schemas/addCourseBooking');
@@ -9,22 +10,23 @@ var EditCourseBookingSchema = require('./schemas/editCourseBookingSchema');*/
 
 var getDashboardItemSettings = require(global.app + '/helpers/settings/getDashboardItemSettings');
 
-Bloom.registerHook('dashboard:learner', function(dashboardData, currentData, callback) {
+Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardData, currentData, callback) {
         
     var dashboardTilesSettings = getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles');
 
     if (dashboardTilesSettings && dashboardTilesSettings._isEnabled) {
 
-        DashboardTile.findOne({}, function(err, dashboardTile) {
-            dashboardData._dashboardTiles = dashboardTile;
-            return callback();
-        });
+        var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_tiles._courseLink', select: '_id title displayTitle' });
+
+        dashboardData._dashboardTiles = dashboardTile;
+
+        return callback();
 
     } else {
         return callback();
     }
 
-});
+}));
 
 module.exports = {
     

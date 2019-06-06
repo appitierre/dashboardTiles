@@ -9,7 +9,6 @@ var DashboardTilesContainer = React.createClass({
             <DashboardTiles
                 title={this.props.dashboardTiles.displayTitle}
                 tiles={this.props.dashboardTiles._tiles}
-                courses={this.props.courses}
             />
         );
     }
@@ -18,7 +17,6 @@ var DashboardTilesContainer = React.createClass({
 
 export default connect(function(state, props) {
     return {
-        dashboardTiles: state.dashboardTiles,
-        courses: state.courses
+        dashboardTiles: state.dashboardTiles
     }
 })(DashboardTilesContainer);
