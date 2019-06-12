@@ -1,4 +1,5 @@
 var Bloom = require(global.app + '/bloom');
+var Promise = require('bluebird');
 var async = require('async');
 var DashboardTile = require('./models/dashboardTile');
 var EditDashboardTilesSchema = require('./schemas/editDashboardTiles');
@@ -10,9 +11,9 @@ var EditCourseBookingSchema = require('./schemas/editCourseBookingSchema');*/
 
 var getDashboardItemSettings = require(global.app + '/helpers/settings/getDashboardItemSettings');
 
-Bloom.registerHook('dashboard:learner', function(dashboardData, currentData, callback) {
+Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardData, currentData, callback) {
         
-    var dashboardTilesSettings = getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles');
+    var dashboardTilesSettings = yield getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles', currentData.user);
 
     if (dashboardTilesSettings && dashboardTilesSettings._isEnabled) {
         
@@ -44,8 +45,7 @@ Bloom.registerHook('dashboard:learner', function(dashboardData, currentData, cal
     } else {
         return callback();
     }
-
-});
+}));
 
 module.exports = {
     
