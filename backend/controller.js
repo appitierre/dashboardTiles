@@ -16,7 +16,7 @@ Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardDat
 
     if (dashboardTilesSettings && dashboardTilesSettings._isEnabled) {
 
-        var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_tiles._courseLink', select: '_id title displayTitle' });
+        var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_tiles._courseLink', select: '_id title displayTitle _urlSlug' });
 
         dashboardData._dashboardTiles = dashboardTile;
 
