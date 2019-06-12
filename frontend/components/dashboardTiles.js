@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardTile from './dashboardTile';
+import LP from 'helpers/lp';
 
 var DashboardTiles = React.createClass({
 
@@ -37,14 +38,13 @@ var DashboardTiles = React.createClass({
         }
 
         return (
-            <div 
+            <section 
                 className="dashboard-tiles"
-                tabIndex="0"
-                aria-label="Dashboard tiles. Here are tiles with external links, file uploads and shortcuts to courses."
+                aria-label={LP('dashboard', 'dashboardTilesSectionAriaLabel', 'sentencecase')}
             >
                 {this.renderTitle()}
                 {this.renderItems()}
-            </div>
+            </section>
         );
     }
 
