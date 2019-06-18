@@ -67,6 +67,7 @@ var EditDashboardTilesContainer = React.createClass({
     },
 
     onUpdateField: function(model) {
+        console.log(model);
         return this.props.updateDashboardTiles(model);
     },
 

@@ -17,8 +17,14 @@ var tiles = mongoose.Schema({
     "_updatedBy": {type: mongoose.Schema.Types.ObjectId, ref:'User'}
 });
 
+var items = mongoose.Schema({
+    "itemIndex": Number,
+    "displayTitle": {type: String, default: ''},
+    "_groups": [{type: mongoose.Schema.Types.ObjectId, ref: 'Group'}],
+    "_tiles": [tiles]
+})
+
 module.exports = {
     "_type": {type: String, default: 'dashboardTile', enum:["link", "course", "resource"]},
-    "displayTitle": {type: String, default: 'Tiles'},
-    "_tiles": [tiles]
+    "_items": [items]
 }
