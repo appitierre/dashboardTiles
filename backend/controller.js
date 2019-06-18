@@ -13,10 +13,9 @@ var getDashboardItemSettings = require(global.app + '/helpers/settings/getDashbo
 
 Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardData, currentData, callback) {
             
-    var dashboardTilesSettings = getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles', currentData.user);
+    var dashboardTilesSettings = yield getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles', currentData.user);
 
     if (dashboardTilesSettings && dashboardTilesSettings._isEnabled) {
-
 
         // var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_tiles._courseLink', select: '_id title displayTitle _urlSlug' });
 
@@ -46,6 +45,7 @@ Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardDat
 
         dashboardData._dashboardTiles._items = filteredItemsArray;
 
+
         return callback();
 
     } else {
@@ -66,11 +66,8 @@ module.exports = {
     },
 
     updateDashboardTiles: function(req, callback) {
-        console.log(req.body);
         DashboardTile.findOneAndUpdate({}, req.body, {new: true}, function(err, dashboardTile) {
-            console.log(dashboardTile);
             if (err) {
-                console.log(err);
                 return callback({_statusCode: 500, message: 'Server error'})
             }
             return callback(null, {_dashboardTiles: dashboardTile});
