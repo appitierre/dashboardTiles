@@ -8,7 +8,7 @@ var DashboardTilesContainer = React.createClass({
         return (
             <DashboardTiles
                 title={this.props.dashboardTiles.displayTitle}
-                tiles={this.props.dashboardTiles._tiles}
+                items={this.props.dashboardTiles._items}
             />
         );
     }
