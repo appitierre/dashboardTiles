@@ -28,10 +28,10 @@ var DashboardTiles = React.createClass({
     renderDashboardTiles: function(tiles) {
         return _.map(tiles, (tile) => {
             return (
-                    <DashboardTile
-                        key={tile._id}
-                        tile={tile}
-                    />
+                <DashboardTile
+                    key={tile._id}
+                    tile={tile}
+                />
             );
         });
     },
