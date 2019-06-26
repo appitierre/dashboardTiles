@@ -6,9 +6,9 @@ var DashboardTiles = React.createClass({
 
     renderTitle: function(title) {
         return (
-            <div className="dashboard-tiles-title">
+            <h2 className="dashboard-tiles-title">
                 {title}
-            </div>
+            </h2>
         );
     },
 
@@ -17,9 +17,9 @@ var DashboardTiles = React.createClass({
             return (
                 <div>
                     {this.renderTitle(item.displayTitle)}
-                    <div className="dashboard-tiles-items clearfix">
+                    <ul role="list" className="dashboard-tiles-items clearfix">
                         {this.renderDashboardTiles(item._tiles)}
-                    </div>
+                    </ul>
                 </div>
             );
         });
@@ -28,10 +28,10 @@ var DashboardTiles = React.createClass({
     renderDashboardTiles: function(tiles) {
         return _.map(tiles, (tile) => {
             return (
-                <DashboardTile
-                    key={tile._id}
-                    tile={tile}
-                />
+                    <DashboardTile
+                        key={tile._id}
+                        tile={tile}
+                    />
             );
         });
     },
