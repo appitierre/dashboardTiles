@@ -9,7 +9,7 @@
 }
 
 .dashboard-tiles-items {
-    flex: 1 1 auto;
+    flex-wrap: wrap;
     display: flex;
     @media all and (max-width: @device-width-medium) {
         display:block;
@@ -19,25 +19,12 @@
 .dashboard-tiles-tile {
     width:30%;
     background-color:@content-background;
-    flex-grow: 1;
+    margin: 1%;
     transition: background-color 0.3s;
     cursor: pointer;
-    @media all and (max-width: @device-width-large) {
-        width:32%;
-    }
     @media all and (max-width: @device-width-medium) {
         width:100%;
         margin: 0 0 @space-x-small;
-    }
-    &:nth-child(even) {
-        margin:0 5%;
-        @media all and (max-width: @device-width-large) {
-            margin: 0 2%;
-        }
-        @media all and (max-width: @device-width-medium) {
-            width:100%;
-            margin: 0 0 @space-x-small;
-        }
     }
     &:hover {
         background-color:@ui-grey-light;
@@ -57,7 +44,7 @@
 }
 
 .dashboard-tiles-tile-graphic {
-    height: 140px;
+    height: 160px;
     background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
