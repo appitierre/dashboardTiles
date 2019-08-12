@@ -1,7 +1,8 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import openNewWindowWithLink from 'helpers/openNewWindowWithLink';
 
-var DashboardTile = React.createClass({
+var DashboardTile = createReactClass({
 
     getGraphicStyle: function() {
         var backgroundImage = 'url("' + this.props.tile._poster + '")';
