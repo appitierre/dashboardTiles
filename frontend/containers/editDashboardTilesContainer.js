@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import {
     PageLoader
@@ -10,11 +11,7 @@ import {
     updateDashboardTiles
 } from '../actions/dashboardTilesActions';
 
-var EditDashboardTilesContainer = React.createClass({
-
-    contextTypes: {
-        router: React.PropTypes.object
-    },
+var EditDashboardTilesContainer = createReactClass({
 
     getInitialState: function() {
         return {

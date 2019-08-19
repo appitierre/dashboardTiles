@@ -1,7 +1,8 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import DashboardTile from './dashboardTile';
 
-var DashboardTiles = React.createClass({
+var DashboardTiles = createReactClass({
 
     renderTitle: function(title) {
         return (

@@ -1,8 +1,9 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import {Form} from 'modules/form';
 
-var EditDashboardTiles = React.createClass({
+var EditDashboardTiles = createReactClass({
 
     render: function() {
         return (

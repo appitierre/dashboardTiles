@@ -1,8 +1,9 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import DashboardTiles from '../components/dashboardTiles';
 
-var DashboardTilesContainer = React.createClass({
+var DashboardTilesContainer = createReactClass({
 
     render: function() {
         return (
