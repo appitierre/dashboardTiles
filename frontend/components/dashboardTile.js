@@ -14,30 +14,18 @@ var DashboardTile = createReactClass({
     },
 
     onTileClicked: function() {
-        if (this.props.tile._linkType == 'externalLink') {
-            if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._link);
-            } else {
-                return window.location = this.props.tile._link;
+        var shouldOpenNewWindow = this.props.tile._shouldOpenNewWindow;
+
+        switch (this.props.tile._linkType) {
+            case 'resource': {
+                return shouldOpenNewWindow ? openNewWindowWithLink(this.props.tile._resourceUpload) : window.location = this.props.tile._resourceUpload;
             }
-        } else if (this.props.tile._linkType == 'resource') {
-            if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._resourceUpload);
-            } else {
-                return window.location = this.props.tile._resourceUpload;
+            case 'course': {
+                var courseSlugOrId = getSlugOrId(this.props.tile._courseLink);
+                return shouldOpenNewWindow ? openNewWindowWithLink('/courses/' + courseSlugOrId) : window.location = '/courses/' + courseSlugOrId;
             }
-        } else if (this.props.tile._linkType == 'course') {
-            var courseSlugOrId = getSlugOrId(this.props.tile._courseLink);
-            if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink('/courses/' + courseSlugOrId);
-            } else {
-                return window.location = '/courses/' + courseSlugOrId;
-            }
-        } else {
-            if (this.props.tile._shouldOpenNewWindow) {
-                return openNewWindowWithLink(this.props.tile._link);
-            } else {
-                return window.location = this.props.tile._link;
+            default: {
+                return shouldOpenNewWindow ? openNewWindowWithLink(this.props.tile._link) : window.location = this.props.tile._link;
             }
         }
     },
@@ -45,8 +33,8 @@ var DashboardTile = createReactClass({
     renderGraphic: function() {
         if (this.props.tile._poster) {
             return (
-                <div 
-                    className="dashboard-tiles-tile-graphic" 
+                <div
+                    className="dashboard-tiles-tile-graphic"
                     style={this.getGraphicStyle()}>
                 </div>
             );
@@ -76,10 +64,10 @@ var DashboardTile = createReactClass({
     render: function() {
         return (
             <li role="listitem" className="dashboard-tiles-tile clearfix" >
-                <a 
-                    onClick={this.onTileClicked} 
-                    tabIndex="0" 
-                    aria-label={`${this.props.tile.displayTitle}. ${this.props.tile.description}`}>
+                <a
+                    onClick={this.onTileClicked}
+                    tabIndex="0"
+                    aria-label={`${this.props.tile.displayTitle}. ${this.props.tile.description || ''}`}>
                     {this.renderGraphic()}
                     <div className="dashboard-tiles-tile-content">
                         {this.renderTitle()}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import createReactClass from 'create-react-class';
 import DashboardTile from './dashboardTile';
 import LP from 'helpers/lp';
@@ -14,14 +14,14 @@ var DashboardTiles = createReactClass({
     },
 
     renderItems: function() {
-        return _.map(this.props.items, (item) => {
+        return _.map(this.props.items, (item, index) => {
             return (
-                <div>
+                <Fragment key={`dashboardTilesItem${index+1}`}>
                     {this.renderTitle(item.displayTitle)}
                     <ul role="list" className="dashboard-tiles-items clearfix">
                         {this.renderDashboardTiles(item._tiles)}
                     </ul>
-                </div>
+                </Fragment>
             );
         });
     },
@@ -44,11 +44,7 @@ var DashboardTiles = createReactClass({
         }
 
         return (
-            <section 
-                className="dashboard-tiles"
-                aria-label={LP('dashboard', 'dashboardTilesSectionAriaLabel', 'sentencecase')}
-            >
-                {this.renderTitle()}
+            <section className="dashboard-tiles" aria-label={LP('dashboard', 'dashboardTilesSectionAriaLabel', 'sentencecase')}>
                 {this.renderItems()}
             </section>
         );

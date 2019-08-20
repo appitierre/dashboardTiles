@@ -47,10 +47,6 @@ module.exports = {
                         "type": "AssetUpload:Image:Small",
                         "label": "Poster Image"
                     },
-                    "_link": {
-                        "type": "Text",
-                        "label": "Link"
-                    },
                     "_linkType": {
                         "type": "Select",
                         "label": "Tile Link Type",
