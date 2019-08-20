@@ -1,6 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import openNewWindowWithLink from 'helpers/openNewWindowWithLink';
+import getSlugOrId from 'helpers/getSlugOrId';
 
 var DashboardTile = createReactClass({
 
@@ -13,10 +14,31 @@ var DashboardTile = createReactClass({
     },
 
     onTileClicked: function() {
-        if (this.props.tile._shouldOpenNewWindow) {
-            return openNewWindowWithLink(this.props.tile._link);
+        if (this.props.tile._linkType == 'externalLink') {
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._link);
+            } else {
+                return window.location = this.props.tile._link;
+            }
+        } else if (this.props.tile._linkType == 'resource') {
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._resourceUpload);
+            } else {
+                return window.location = this.props.tile._resourceUpload;
+            }
+        } else if (this.props.tile._linkType == 'course') {
+            var courseSlugOrId = getSlugOrId(this.props.tile._courseLink);
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink('/courses/' + courseSlugOrId);
+            } else {
+                return window.location = '/courses/' + courseSlugOrId;
+            }
         } else {
-            return window.location = this.props.tile._link;
+            if (this.props.tile._shouldOpenNewWindow) {
+                return openNewWindowWithLink(this.props.tile._link);
+            } else {
+                return window.location = this.props.tile._link;
+            }
         }
     },
 

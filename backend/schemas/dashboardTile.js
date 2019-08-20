@@ -5,6 +5,9 @@ var tiles = mongoose.Schema({
     "displayTitle": String,
     "description": String,
     "_poster": String,
+    "_linkType": {type: String, default: 'externalLink'},
+    "_courseLink": {type: mongoose.Schema.Types.ObjectId, ref:'Course'},
+    "_resourceUpload": String,
     "_link": String,
     "_shouldOpenNewWindow": {type: Boolean, default: true},
     "_isPublished": {type: Boolean, default: false},
@@ -20,7 +23,8 @@ var items = mongoose.Schema({
     "_groups": [{type: mongoose.Schema.Types.ObjectId, ref: 'Group'}],
     "_tiles": [tiles]
 })
+
 module.exports = {
-    "_type": {type: String, default: 'dashboardTile'},
+    "_type": {type: String, default: 'dashboardTile', enum:["link", "course", "resource"]},
     "_items": [items]
 }

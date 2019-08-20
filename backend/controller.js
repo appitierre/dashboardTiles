@@ -12,35 +12,41 @@ var EditCourseBookingSchema = require('./schemas/editCourseBookingSchema');*/
 var getDashboardItemSettings = require(global.app + '/helpers/settings/getDashboardItemSettings');
 
 Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardData, currentData, callback) {
-        
+            
     var dashboardTilesSettings = yield getDashboardItemSettings(currentData.settings, 'learner', 'dashboardTiles', currentData.user);
 
     if (dashboardTilesSettings && dashboardTilesSettings._isEnabled) {
+
+        // var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_tiles._courseLink', select: '_id title displayTitle _urlSlug' });
+
+        // dashboardData._dashboardTiles = dashboardTile;
+
+        // return callback();
         
-        DashboardTile.findOne({}, function(err, dashboardTile) {
-            var filteredItemsArray = []; 
-            
-            dashboardData._dashboardTiles = dashboardTile;
-            
-            //Iterates over all dashboard items
-            _.each(dashboardData._dashboardTiles._items, (item) => {
-                //Iterates over again with each group
-                _.each(item._groups, (group) => {
-                    //Skips duplicates
-                    if(_.find(filteredItemsArray, { '_id': item._id })) return;
-                    //Matches user groups and item groups then pushes items to new array
-                    _.find(currentData.user._groups, (usersGroup) => {
-                        if (String(usersGroup) === String(group)) {
-                            return filteredItemsArray.push(item);
-                        }
-                    });
+        var dashboardTile = yield DashboardTile.findOne({}).populate({path: '_items._tiles._courseLink', select: '_id title displayTitle _urlSlug' });
+        var filteredItemsArray = []; 
+        
+        dashboardData._dashboardTiles = dashboardTile;
+                
+        //Iterates over all dashboard items
+        _.each(dashboardData._dashboardTiles._items, (item) => {
+            //Iterates over again with each group
+            _.each(item._groups, (group) => {
+                //Skips duplicates
+                if(_.find(filteredItemsArray, { '_id': item._id })) return;
+                //Matches user groups and item groups then pushes items to new array
+                _.find(currentData.user._groups, (usersGroup) => {
+                    if (String(usersGroup) === String(group)) {
+                        return filteredItemsArray.push(item);
+                    }
                 });
             });
-
-            dashboardData._dashboardTiles._items = filteredItemsArray;
-
-            return callback();
         });
+
+        dashboardData._dashboardTiles._items = filteredItemsArray;
+
+
+        return callback();
 
     } else {
         return callback();

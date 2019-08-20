@@ -10,10 +10,12 @@ module.exports = {
         "subSchema": {
             "displayTitle": {
                 "type": "Text",
-                "label": "Display Name",
-                "help": "",
-                "conditions": ["required"]
+                "label": "Display Title"
             },
+            "description": {
+                "type": "Text",
+                "label": "Description"
+            },            
             "_groups": {
                 "type": "GroupSelection",
                 "label": "Groups",
@@ -48,6 +50,33 @@ module.exports = {
                     "_link": {
                         "type": "Text",
                         "label": "Link"
+                    },
+                    "_linkType": {
+                        "type": "Select",
+                        "label": "Tile Link Type",
+                        "options": [{
+                            "value": "course",
+                            "text": "Course Link"
+                        }, {
+                            "value": "resource",
+                            "text": "Resource"
+                        }, {
+                            "value": "externalLink",
+                            "text": "External Link"
+                        }]
+                    },
+                    "_courseLink": {
+                        "type": "CourseSelection",
+                        "label": "Course Link",
+                        "shouldOnlyAllowOneCourse": true
+                    },
+                    "_resourceUpload": {
+                        "type": "AssetUpload:Resource",
+                        "label": "Resource Upload"
+                    },
+                    "_link": {
+                        "type": "Text",
+                        "label": "External Link"
                     },
                     "_shouldOpenNewWindow": {
                         "type": "Boolean",
