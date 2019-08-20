@@ -75,13 +75,18 @@ var DashboardTile = createReactClass({
 
     render: function() {
         return (
-            <div className="dashboard-tiles-tile clearfix" onClick={this.onTileClicked}>
-                {this.renderGraphic()}
-                <div className="dashboard-tiles-tile-content">
-                    {this.renderTitle()}
-                    {this.renderDescription()}
-                </div>
-            </div>
+            <li role="listitem" className="dashboard-tiles-tile clearfix" >
+                <a 
+                    onClick={this.onTileClicked} 
+                    tabIndex="0" 
+                    aria-label={`${this.props.tile.displayTitle}. ${this.props.tile.description}`}>
+                    {this.renderGraphic()}
+                    <div className="dashboard-tiles-tile-content">
+                        {this.renderTitle()}
+                        {this.renderDescription()}
+                    </div>
+                </a>
+            </li>
         );
     }
 

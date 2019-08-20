@@ -1,14 +1,15 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import DashboardTile from './dashboardTile';
+import LP from 'helpers/lp';
 
 var DashboardTiles = createReactClass({
 
     renderTitle: function(title) {
         return (
-            <div className="dashboard-tiles-title">
+            <h2 className="dashboard-tiles-title">
                 {title}
-            </div>
+            </h2>
         );
     },
 
@@ -17,9 +18,9 @@ var DashboardTiles = createReactClass({
             return (
                 <div>
                     {this.renderTitle(item.displayTitle)}
-                    <div className="dashboard-tiles-items clearfix">
+                    <ul role="list" className="dashboard-tiles-items clearfix">
                         {this.renderDashboardTiles(item._tiles)}
-                    </div>
+                    </ul>
                 </div>
             );
         });
@@ -43,10 +44,13 @@ var DashboardTiles = createReactClass({
         }
 
         return (
-            <div className="dashboard-tiles">
+            <section 
+                className="dashboard-tiles"
+                aria-label={LP('dashboard', 'dashboardTilesSectionAriaLabel', 'sentencecase')}
+            >
                 {this.renderTitle()}
                 {this.renderItems()}
-            </div>
+            </section>
         );
     }
 
