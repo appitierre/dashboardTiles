@@ -65,13 +65,17 @@ module.exports = {
         });
     },
 
-    updateDashboardTiles: function(req, callback) {
-        DashboardTile.findOneAndUpdate({}, req.body, {new: true}, function(err, dashboardTile) {
-            if (err) {
-                return callback({_statusCode: 500, message: 'Server error'})
-            }
+    updateDashboardTiles: Promise.coroutine(function*(req, callback) {
+        try {
+            var dashboardTile = yield DashboardTile.findOneAndUpdate({}, req.body, {new: true});
+        
             return callback(null, {_dashboardTiles: dashboardTile});
-        });
-    }
+        } catch (err) {
+            if (err._statusCode) {
+                callback(err);
+            }
+            callback({_statusCode: 500, message: err.message});
+        }
+    })
 
 }
