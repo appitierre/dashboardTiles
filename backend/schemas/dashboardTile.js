@@ -25,6 +25,6 @@ var items = mongoose.Schema({
 })
 
 module.exports = {
-    "_type": {type: String, default: 'dashboardTile', enum:["link", "course", "resource"]},
+    "_type": {type: String, default: 'dashboardTile'},
     "_items": [items]
 }
