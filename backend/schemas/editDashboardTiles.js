@@ -50,15 +50,16 @@ module.exports = {
                     "_linkType": {
                         "type": "Select",
                         "label": "Tile Link Type",
+                        "help": "Select a link type and then use the corresponding field below to complete the tile",
                         "options": [{
                             "value": "course",
-                            "text": "Course Link"
+                            "text": "Course"
                         }, {
                             "value": "resource",
                             "text": "Resource"
                         }, {
-                            "value": "externalLink",
-                            "text": "External Link"
+                            "value": "link",
+                            "text": "Custom"
                         }]
                     },
                     "_courseLink": {
@@ -72,7 +73,8 @@ module.exports = {
                     },
                     "_link": {
                         "type": "Text",
-                        "label": "External Link"
+                        "label": "Custom Link",
+                        "help": "This can be an external link such as http://google.com/ or an internal link like /#/library/trail/trail-name"
                     },
                     "_shouldOpenNewWindow": {
                         "type": "Boolean",
