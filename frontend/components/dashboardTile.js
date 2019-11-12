@@ -1,7 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import openNewWindowWithLink from 'helpers/openNewWindowWithLink';
-import getSlugOrId from 'helpers/getSlugOrId';
+import openNewWindowWithLink from 'modules/app/helpers/openNewWindowWithLink';
+import getSlugOrId from 'modules/app/helpers/getSlugOrId';
 
 var DashboardTile = createReactClass({
 

@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import createReactClass from 'create-react-class';
 import DashboardTile from './dashboardTile';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 
 var DashboardTiles = createReactClass({
 
