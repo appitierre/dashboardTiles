@@ -19,17 +19,19 @@ var DashboardTiles = createReactClass({
                 <Fragment key={`dashboardTilesItem${index+1}`}>
                     {this.renderTitle(item.displayTitle)}
                     <ul role="list" className="dashboard-tiles-items clearfix">
-                        {this.renderDashboardTiles(item._tiles)}
+                        {this.renderDashboardTiles(item._tiles, item.tilesPerRow, item.shouldTilesStretchAcrossRows)}
                     </ul>
                 </Fragment>
             );
         });
     },
 
-    renderDashboardTiles: function(tiles) {
+    renderDashboardTiles: function(tiles, tilesPerRow, shouldTilesStretchAcrossRows) {
         return _.map(tiles, (tile) => {
             return (
                 <DashboardTile
+                    tilesPerRow={tilesPerRow}
+                    shouldTilesStretchAcrossRows={shouldTilesStretchAcrossRows}
                     key={tile._id}
                     tile={tile}
                 />
