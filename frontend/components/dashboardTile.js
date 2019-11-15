@@ -72,15 +72,15 @@ var DashboardTile = createReactClass({
         switch (this.props.tilesPerRow) {
             case 1: {
                 flexBasis = '100%'
+                break;
             }
             case 2: {
                 flexBasis = '48%'
+                break;
             }
             case 3: {
                 flexBasis = '31%'
-            }
-            default: {
-                flexBasis = '31%'
+                break;
             }
         }
 

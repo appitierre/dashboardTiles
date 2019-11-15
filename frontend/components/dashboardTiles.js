@@ -19,7 +19,7 @@ var DashboardTiles = createReactClass({
                 <Fragment key={`dashboardTilesItem${index+1}`}>
                     {this.renderTitle(item.displayTitle)}
                     <ul role="list" className="dashboard-tiles-items clearfix">
-                        {this.renderDashboardTiles(item._tiles, item.tilesPerRow, item.shouldTilesStretchAcrossRows)}
+                        {this.renderDashboardTiles(item._tiles, item._tilesPerRow, item._shouldTilesStretchAcrossRows)}
                     </ul>
                 </Fragment>
             );

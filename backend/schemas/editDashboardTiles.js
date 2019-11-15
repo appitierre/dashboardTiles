@@ -22,7 +22,7 @@ module.exports = {
                 "help": "Select the groups that should be able to view this section of dashboard tiles",
                 "shouldAllowSelectAll": true
             },
-            "tilesPerRow": {
+            "_tilesPerRow": {
                 "type": "Select",
                 "label": "Tiles per row",
                 "help": "This will change the number of tiles that will display per row in an item",
@@ -39,7 +39,7 @@ module.exports = {
                     "text": 3
                 }]
             },
-            "shouldTilesStretchAcrossRows": {
+            "_shouldTilesStretchAcrossRows": {
                 "type": "ToggleButtonField",
                 "options": [{
                     "text": "Yes",
