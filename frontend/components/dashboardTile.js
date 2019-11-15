@@ -63,11 +63,7 @@ var DashboardTile = createReactClass({
 
     getDashboardTileStyles: function() {
         var flexBasis = '31%';
-        var flexGrow = 0;
-
-        if (this.props.shouldTilesStretchAcrossRows) {
-            flexGrow = 1;
-        }
+        var flexGrow = this.props.shouldTilesStretchAcrossRows ? 1 : 0;
 
         switch (this.props.tilesPerRow) {
             case 1: {
