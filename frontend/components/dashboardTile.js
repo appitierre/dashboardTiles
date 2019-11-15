@@ -80,7 +80,7 @@ var DashboardTile = createReactClass({
             }
         }
 
-        return {flexBasis: flexBasis, flexGrow: flexGrow}
+        return {flexBasis, flexGrow}
     },
 
     render: function() {
