@@ -61,9 +61,31 @@ var DashboardTile = createReactClass({
         }
     },
 
+    getDashboardTileStyles: function() {
+        var flexBasis = '31%';
+        var flexGrow = this.props.shouldTilesStretchAcrossRows ? 1 : 0;
+
+        switch (this.props.tilesPerRow) {
+            case 1: {
+                flexBasis = '100%'
+                break;
+            }
+            case 2: {
+                flexBasis = '48%'
+                break;
+            }
+            case 3: {
+                flexBasis = '31%'
+                break;
+            }
+        }
+
+        return {flexBasis, flexGrow}
+    },
+
     render: function() {
         return (
-            <li role="listitem" className="dashboard-tiles-tile clearfix" >
+            <li role="listitem" className="dashboard-tiles-tile clearfix" style={this.getDashboardTileStyles()}>
                 <a
                     onClick={this.onTileClicked}
                     tabIndex="0"

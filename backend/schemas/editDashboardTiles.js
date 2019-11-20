@@ -15,12 +15,41 @@ module.exports = {
             "description": {
                 "type": "Text",
                 "label": "Description"
-            },            
+            },
             "_groups": {
                 "type": "GroupSelection",
                 "label": "Groups",
                 "help": "Select the groups that should be able to view this section of dashboard tiles",
                 "shouldAllowSelectAll": true
+            },
+            "_tilesPerRow": {
+                "type": "Select",
+                "label": "Tiles per row",
+                "help": "This will change the number of tiles that will display per row in an item",
+                "options": [{
+                    "value": 1,
+                    "text": 1
+                },
+                {
+                    "value": 2,
+                    "text": 2
+                    },
+                {
+                    "value": 3,
+                    "text": 3
+                }]
+            },
+            "_shouldTilesStretchAcrossRows": {
+                "type": "ToggleButtonField",
+                "options": [{
+                    "text": "Yes",
+                    "value": true
+                }, {
+                    "text": "No",
+                    "value": false
+                }],
+                "label": "Should tiles stretch across whole row?",
+                "help": "For example, if you have choosen 3 tiles per row and have 2 tiles, selecting true here will stretch the 2 tiles across the row"
             },
             "_tiles": {
                 "type": "Array",
