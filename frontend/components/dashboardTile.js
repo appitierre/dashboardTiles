@@ -6,7 +6,13 @@ import getSlugOrId from 'helpers/getSlugOrId';
 var DashboardTile = createReactClass({
 
     getGraphicStyle: function() {
-        var backgroundImage = 'url("' + this.props.tile._poster + '")';
+        var posterUrl = this.props.tile._poster || this.props.tile._largePoster;
+
+        if (this.props.tilesPerRow === 1 && this.props.tile._largePoster) {
+            posterUrl = this.props.tile._largePoster;
+        }
+            
+        var backgroundImage = 'url("' + posterUrl + '")';
 
         return {
             backgroundImage: backgroundImage
@@ -31,7 +37,7 @@ var DashboardTile = createReactClass({
     },
 
     renderGraphic: function() {
-        if (this.props.tile._poster) {
+        if (this.props.tile._poster || this.props.tile._largePoster) {
             return (
                 <div
                     className="dashboard-tiles-tile-graphic"
