@@ -16,13 +16,7 @@ var DashboardTiles = createReactClass({
     renderItems: function() {
         return _.map(this.props.items, (item, index) => {
 
-            var publishableDashboardTiles = [];
-                
-            _.each(item._tiles, (tile) => {
-                if (tile._isPublished) {
-                    publishableDashboardTiles.push(tile)
-                }
-            });
+            var publishableDashboardTiles = _.filter(item._tiles, {'_isPublished': true});
 
             if (publishableDashboardTiles.length === 0) {
                 return null;
