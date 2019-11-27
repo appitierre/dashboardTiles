@@ -74,7 +74,13 @@ module.exports = {
                     },
                     "_poster": {
                         "type": "AssetUpload:Image:Small",
-                        "label": "Poster Image"
+                        "label": "Small poster image",
+                        "help": "Best used when the number of tiles per row is set to 2 or 3, we would recommend an image around 500px wide"
+                    },
+                    "_largePoster": {
+                        "type": "AssetUpload:Image:Large",
+                        "label": "Large poster image",
+                        "help": "Best used when the number of tiles per row is set to 1, we would recommend an image around 950px wide"
                     },
                     "_linkType": {
                         "type": "Select",
