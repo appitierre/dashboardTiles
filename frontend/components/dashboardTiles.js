@@ -13,6 +13,14 @@ var DashboardTiles = createReactClass({
         );
     },
 
+    renderDescription: function(description) {
+        return (
+            <p className="dashboard-tiles-description">
+                {description}
+            </p>
+        )
+    },
+
     renderItems: function() {
         return _.map(this.props.items, (item, index) => {
 
@@ -25,6 +33,7 @@ var DashboardTiles = createReactClass({
             return (
                 <Fragment key={`dashboardTilesItem${index+1}`}>
                     {this.renderTitle(item.displayTitle)}
+                    {this.renderDescription(item.description)}
                     <ul role="list" className="dashboard-tiles-items clearfix">
                         {this.renderDashboardTiles(item._tiles, item._tilesPerRow, item._shouldTilesStretchAcrossRows)}
                     </ul>

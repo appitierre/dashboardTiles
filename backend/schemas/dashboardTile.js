@@ -21,6 +21,7 @@ var tiles = mongoose.Schema({
 var items = mongoose.Schema({
     "itemIndex": Number,
     "displayTitle": {type: String, default: ''},
+    "description": {type: String, default: ''},
     "_tilesPerRow": {type: Number, default: 3},
     "_shouldTilesStretchAcrossRows": {type: Boolean, default: false},
     "_groups": [{type: mongoose.Schema.Types.ObjectId, ref: 'Group'}],
