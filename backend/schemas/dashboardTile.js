@@ -6,7 +6,7 @@ var tiles = mongoose.Schema({
     "description": String,
     "_poster": String,
     "_largePoster": String,
-    "_linkType": {type: String, default: 'externalLink'},
+    "_linkType": {type: String, default: 'course'},
     "_courseLink": {type: mongoose.Schema.Types.ObjectId, ref:'Course'},
     "_resourceUpload": String,
     "_link": String,
