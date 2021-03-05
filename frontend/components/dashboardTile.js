@@ -1,6 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import openNewWindowWithLink from 'modules/app/helpers/openNewWindowWithLink';
+import { getHooks } from 'bloom';
 import getSlugOrId from 'modules/app/helpers/getSlugOrId';
 
 var DashboardTile = createReactClass({
@@ -28,6 +29,13 @@ var DashboardTile = createReactClass({
             }
             case 'course': {
                 var courseSlugOrId = getSlugOrId(this.props.tile._courseLink);
+
+                var preLoadCourseHooks = getHooks('preLoad:course');
+
+                _.each(preLoadCourseHooks, (hook) => {
+                    hook(this.props.tile._courseLink._id);
+                });
+
                 return shouldOpenNewWindow ? openNewWindowWithLink('/courses/' + courseSlugOrId) : window.location = '/courses/' + courseSlugOrId;
             }
             default: {
